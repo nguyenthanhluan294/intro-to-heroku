@@ -9,7 +9,7 @@ import {FavoriteListPage} from './pages/favorite-list/favorite-list';
 import {AccountListPage} from './pages/Account-list/Account-list';
 import {PropertyService} from './services/property-service';
 import {BrokerService} from './services/broker-service';
-
+import {AccountService} from './services/Account-service';
 @App({
     templateUrl: 'build/app.html',
     config: {
@@ -18,7 +18,7 @@ import {BrokerService} from './services/broker-service';
     queries: {
         nav: new ViewChild('content')
     },
-    providers: [HTTP_PROVIDERS, PropertyService, BrokerService]
+    providers: [HTTP_PROVIDERS, PropertyService, BrokerService , AccountService]
 })
 class MyApp {
 

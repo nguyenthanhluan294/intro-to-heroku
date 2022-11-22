@@ -23,6 +23,7 @@ client.connect();
 var propertyTable = 'property__c';
 var favoriteTable = 'favorite__c';
 var brokerTable = 'broker__c';
+var accountTable = 'Account';
 
 // setup the demo data if needed
 client.query('SELECT * FROM salesforce.broker__c', function(error, data) {
@@ -40,6 +41,7 @@ client.query('SELECT * FROM salesforce.broker__c', function(error, data) {
     propertyTable = schema + 'property__c';
     favoriteTable = schema + 'favorite__c';
     brokerTable = schema + 'broker__c';
+    var accountTable = 'Account';
   }
 });
 
@@ -56,6 +58,11 @@ app.get('/property/:id', function(req, res) {
   });
 });
 
+app.get('/account', function(req, res) {
+  client.query('SELECT * FROM ' + accountTable, function(error, data) {
+    res.json(data.rows);
+  });
+});
 
 app.get('/favorite', function(req, res) {
   client.query('SELECT ' + propertyTable + '.*, ' + favoriteTable + '.sfid AS favorite__c_sfid FROM ' + propertyTable + ', ' + favoriteTable + ' WHERE ' + propertyTable + '.sfid = ' + favoriteTable + '.property__c', function(error, data) {
