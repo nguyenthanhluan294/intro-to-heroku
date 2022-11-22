@@ -11,6 +11,12 @@ module.exports = function(client) {
    picture__c CHARACTER VARYING(255)
   );`);
 
+  client.query(`CREATE TABLE Account (
+    id SERIAL NOT NULL,
+    Name CHARACTER VARYING(18) UNIQUE,
+    phone CHARACTER VARYING(40),
+   );`);
+
   client.query(`CREATE TABLE property__c (
    id SERIAL NOT NULL,
    sfid CHARACTER VARYING(18) UNIQUE,
@@ -61,5 +67,7 @@ module.exports = function(client) {
   client.query(`INSERT INTO property__c (name, thumbnail__c, beds__c, location__longitude__s, address__c, baths__c, broker__c, description__c, sfid, state__c, city__c, zip__c, title__c, picture__c, price__c, location__latitude__s) VALUES ('121 Harborwalk', 'https://s3-us-west-1.amazonaws.com/sfdc-demo/realty/house09sq.jpg', 3, -71.0493270000000052, '121 Harborwalk', 3, 'a0036000003SsJwAAK', 'Lorem ipsum dolor sit amet', 'a0236000002NHKpAAO', 'MA', 'Boston', '02420', 'Seaport District Retreat', 'https://s3-us-west-1.amazonaws.com/sfdc-demo/realty/house09.jpg', 450000, 42.3569499999999977);`);
 
   client.query(`INSERT INTO favorite__c (property__c, sfid) VALUES ('a0236000002NHKoAAO', 'a0136000003SsewAAC');`);
+
+  client.query(`INSERT INTO Account (Name , Phone) VALUES ('luaan nguyen' , '0382736454');`);
 
 };
