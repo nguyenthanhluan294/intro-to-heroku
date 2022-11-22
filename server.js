@@ -23,7 +23,7 @@ client.connect();
 var propertyTable = 'property__c';
 var favoriteTable = 'favorite__c';
 var brokerTable = 'broker__c';
-var accountTable = 'Account';
+
 // setup the demo data if needed
 client.query('SELECT * FROM salesforce.broker__c', function(error, data) {
   if (error !== null) {
@@ -40,20 +40,12 @@ client.query('SELECT * FROM salesforce.broker__c', function(error, data) {
     propertyTable = schema + 'property__c';
     favoriteTable = schema + 'favorite__c';
     brokerTable = schema + 'broker__c';
-    accountTable = schema + 'Account';
   }
 });
 
 
 app.get('/property', function(req, res) {
   client.query('SELECT * FROM ' + propertyTable, function(error, data) {
-    res.json(data.rows);
-  });
-});
-
-
-app.get('/account', function(req, res) {
-  client.query('SELECT * FROM ' + accountTable, function(error, data) {
     res.json(data.rows);
   });
 });
