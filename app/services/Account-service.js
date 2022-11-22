@@ -10,7 +10,7 @@ import 'rxjs/Rx';
         return {
             id: account.sfid,
             name: account.name,
-            phone: account.title__c,
+            phone: account.phone,
         };
     };
 
