@@ -96,8 +96,12 @@ app.get('/broker/:sfid', function(req, res) {
 });
 
 app.post('/update', function(req, res) {
+  console.log(req.body.name.trim());
+  console.log(req.body.phone.trim());
+  console.log(req.body.serialnumber.trim());
+  
   conn.query(
-    'INSERT INTO salesforce.Account (name, phone, serialnumber) VALUES ($1, $2, $3') ,
+    'INSERT INTO salesforce.Account (Name, Phone, SLASerialNumber__c) VALUES ($1, $2, $3') ,
     [req.body.name.trim(), req.body.phone.trim() , req.body.serialnumber.trim()],
     function(error, data) {
       if (error) {
