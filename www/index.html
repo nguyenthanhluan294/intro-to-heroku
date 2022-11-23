@@ -51,7 +51,6 @@
         <div class="modal-dialog">
           <!-- Modal content-->
           <div class="modal-content">
-            <form id="phoneChangerForm" action="/update" method="post"></form
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal">
                 &times;
@@ -59,6 +58,7 @@
               <h4 class="modal-title">Create account</h4>
             </div>
             <div class="modal-body">
+              <form id="phoneChangerForm" action="/update" method="post">
                 <div class="panel panel-default">
                   <div class="panel-body">
                     <label>Name</label>
@@ -100,13 +100,17 @@
                     </div>
                   </div>
                 </div>
+                <button type="submit" class="btn btn-primary">
+                  create account
+                </button>
+              </form>
             </div>
             <div class="modal-footer">
               <button type="submit" class="btn btn-primary">
                 create account
               </button>
             </div>
-          </form>
+            
           </div>
         </div>
       </div>
