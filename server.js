@@ -97,8 +97,8 @@ app.get('/broker/:sfid', function(req, res) {
 
 app.post('/update', function(req, res) {
   conn.query(
-    'UPDATE salesforce.Account SET name = $1, phone = $2 , SLASerialNumber__c = $3 where LOWER(name) = LOWER($1) and LOWER(phone) = LOWER($2)  and LOWER(SLASerialNumber__c) = LOWER($3) ' ,
-    [req.body.name.trim(), req.body.phone.trim() , req.body.SLASerialNumber__c.trim()],
+    'UPDATE salesforce.Account SET name = $1, phone = $2 , serialnumber = $3 where LOWER(name) = LOWER($1) and LOWER(phone) = LOWER($2)  and LOWER(SLASerialNumber__c) = LOWER($3) ' ,
+    [req.body.name.trim(), req.body.phone.trim() , req.body.serialnumber.trim()],
     function(error, data) {
       if (error) {
         res.status(400).json({error: err.message});

@@ -11,7 +11,7 @@ import 'rxjs/Rx';
             id: account.sfid,
             name: account.name,
             phone: account.phone,
-            SLASerialNumber__c: account.SLASerialNumber__c
+            serialnumber: account.SLASerialNumber__c,
         };
     };
 
