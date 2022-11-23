@@ -95,26 +95,27 @@ app.get('/broker/:sfid', function(req, res) {
   });
 });
 
+// app.post('/update', function(req, res) {
+//   client.query('INSERT INTO salesforce.Account (Name, Phone, SLASerialNumber__c) VALUES ($1, $2, $3)' ,
+//     [req.body.name.trim(), req.body.phone.trim() , req.body.serialnumber.trim()],
+//     function(error, data) {
+//       if (error) {
+//         res.status(400).json({error: err.message});
+//     }
+//     else {
+//       // this will still cause jquery to display 'Record updated!'
+//       // eventhough it was inserted
+//       res.json(data);
+//   }
+//     });
+// });
+
 app.post('/update', function(req, res) {
-  console.log(req.body.name.trim());
-  console.log(req.body.phone.trim());
-  console.log(req.body.serialnumber.trim());
-
-  client.query(
-    'INSERT INTO salesforce.Account (Name, Phone, SLASerialNumber__c) VALUES ($1, $2, $3)' ,
-    [req.body.name.trim(), req.body.phone.trim() , req.body.serialnumber.trim()],
-    function(error, data) {
-      if (error) {
-        res.status(400).json({error: err.message});
-    }
-    else {
-      // this will still cause jquery to display 'Record updated!'
-      // eventhough it was inserted
-      res.json(data);
-  }
-    });
+  client.query('INSERT INTO ' + accountTable + ' (Name, Phone, SLASerialNumber__c) VALUES ($1, $2, $3)' ,
+  [req.body.name.trim(), req.body.phone.trim() , req.body.serialnumber.trim()], function(error, data) {
+    res.json(data);
+  });
 });
-
 
 var port = process.env.PORT || 8200;
 
