@@ -121,14 +121,14 @@
         $("#phoneChangerForm").submit(function (event) {
           var name = $("#name").val();
           var phone = $("#phone").val();
-          var SLASerialNumber__c = $("#SLASerialNumber__c").val();
+          var serialnumber = $("#SLASerialNumber__c").val();
           $.ajax({
             url: event.target.action,
             method: event.target.method,
             data: JSON.stringify({
               name: firstName,
               phone: lastName,
-              SLASerialNumber__c: SLASerialNumber__c,
+              serialnumber: SLASerialNumber__c,
             }),
             success: function (data) {
                $("#name").val("");
