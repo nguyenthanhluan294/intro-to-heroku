@@ -21,10 +21,5 @@ export class AccountListPage {
         this.accountService.findAll().subscribe(accounts => this.accounts = accounts);
     }
 
-    itemTapped(event, account) {
-        this.nav.push(PropertyDetailsPage, {
-            property: property
-        });
-    }
 
 }

@@ -15,7 +15,7 @@ module.exports = function(client) {
   client.query(`CREATE TABLE Account (
     id SERIAL NOT NULL,
     Name CHARACTER VARYING(18) UNIQUE,
-    phone CHARACTER VARYING(40),
+    Phone CHARACTER VARYING(40),
    );`);
 
   client.query(`CREATE TABLE property__c (

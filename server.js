@@ -41,7 +41,7 @@ client.query('SELECT * FROM salesforce.broker__c', function(error, data) {
     propertyTable = schema + 'property__c';
     favoriteTable = schema + 'favorite__c';
     brokerTable = schema + 'broker__c';
-    var accountTable = 'Account';
+    accountTable = schema + 'Account';
   }
 });
 
@@ -94,6 +94,23 @@ app.get('/broker/:sfid', function(req, res) {
     res.json(data.rows[0]);
   });
 });
+
+app.post('/update', function(req, res) {
+  conn.query(
+    'UPDATE salesforce.Account SET name = $1, phone = $2',
+    [req.body.name.trim(), req.body.phone.trim()],
+    function(error, data) {
+      if (error) {
+        res.status(400).json({error: err.message});
+    }
+    else {
+      // this will still cause jquery to display 'Record updated!'
+      // eventhough it was inserted
+      res.json(data);
+  }
+    });
+})
+
 
 var port = process.env.PORT || 8200;
 

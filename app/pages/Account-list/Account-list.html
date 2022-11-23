@@ -1,15 +1,87 @@
 <ion-navbar primary *navbar>
-    <button menuToggle>
-        <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>Properties</ion-title>
+  <button menuToggle>
+    <ion-icon name="menu"></ion-icon>
+  </button>
+  <ion-title>Properties</ion-title>
 </ion-navbar>
 
 <ion-content>
-    <ion-list>
-        <button ion-item *ngFor="let account of accounts" (click)="itemTapped($event, account)">
-            <h2>{{account.name}}</h2>
-            <p>{{account.phone}}</p>
-        </button>
-    </ion-list>
+  <ion-list>
+    <button
+      ion-item
+      *ngFor="let account of accounts"
+      data-toggle="modal"
+      data-target="#exampleModal"
+    >
+      <h2>{{account.name}}</h2>
+      <p>{{account.phone}}</p>
+    </button>
+
+    <div
+      class="modal fade"
+      id="exampleModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form id="phoneChangerForm" action="/update" method="post">
+              <label>Name</label>
+              <input type="text" name="name" id="name" value="{account.name}" />
+              <label>Phone</label>
+              <input
+                type="text"
+                name="phone"
+                id="phone"
+                value="{account.phone}"
+              />
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Hủy
+            </button>
+            <button type="button" class="btn btn-primary">Lưu</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ion-list>
 </ion-content>
+<script>
+  $(function () {
+    $("#phoneChangerForm").submit(function (event) {
+      var name = $("#name").val();
+      var phone = $("#phone").val();
+      $.ajax({
+        url: event.target.action,
+        method: event.target.method,
+        data: JSON.stringify({
+          name: firstName,
+          phone: lastName,
+        }),
+        success: function (data) {
+            $('#exampleModal').modal().hide();
+        }
+      });
+    });
+  });
+</script>
