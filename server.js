@@ -97,7 +97,7 @@ app.get('/broker/:sfid', function(req, res) {
 
 app.post('/update', function(req, res) {
   conn.query(
-    'UPDATE salesforce.Account SET name = $1, phone = $2',
+    'UPDATE salesforce.Account SET name = $1, phone = $2 where LOWER(name) = LOWER($1) and LOWER(phone) = LOWER($2)' ,
     [req.body.name.trim(), req.body.phone.trim()],
     function(error, data) {
       if (error) {

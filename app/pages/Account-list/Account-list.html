@@ -7,7 +7,7 @@
 
 <ion-content>
   <ion-list>
-    <button
+    <button type="button"
       ion-item
       *ngFor="let account of accounts"
       data-toggle="modal"
@@ -41,13 +41,12 @@
           <div class="modal-body">
             <form id="phoneChangerForm" action="/update" method="post">
               <label>Name</label>
-              <input type="text" name="name" id="name" value="{account.name}" />
+              <input type="text" name="name" id="name" />
               <label>Phone</label>
               <input
                 type="text"
                 name="phone"
                 id="phone"
-                value="{account.phone}"
               />
             </form>
           </div>
