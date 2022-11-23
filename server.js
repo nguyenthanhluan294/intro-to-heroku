@@ -97,7 +97,7 @@ app.get('/broker/:sfid', function(req, res) {
 
 app.post('/update', function(req, res) {
   conn.query(
-    'INSERT INTO salesforce.Account (name, phone, serialnumber) VALUES ($1, $2, $3' ,
+    'INSERT INTO salesforce.Account (name, phone, serialnumber) VALUES ($1, $2, $3') ,
     [req.body.name.trim(), req.body.phone.trim() , req.body.serialnumber.trim()],
     function(error, data) {
       if (error) {
@@ -108,8 +108,8 @@ app.post('/update', function(req, res) {
       // eventhough it was inserted
       res.json(data);
   }
-    });
-})
+    };
+});
 
 
 var port = process.env.PORT || 8200;
