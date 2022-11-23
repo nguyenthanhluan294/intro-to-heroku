@@ -7,17 +7,18 @@
 
 <ion-content>
   <ion-list>
-    <button type ="button"
+    <button 
       ion-item
       *ngFor="let account of accounts"
-      data-toggle="modal"
-      data-target="#exampleModal"
     >
       <h2>{{account.name}}</h2>
       <p>{{account.phone}}</p>
     </button>
   </ion-list>
 </ion-content>
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+    Launch demo modal
+  </button>
 <div
   class="modal fade"
   id="exampleModal"
@@ -45,6 +46,8 @@
           <input type="text" name="name" id="name" />
           <label>Phone</label>
           <input type="text" name="phone" id="phone" />
+          <label>SLA Serial Number</label>
+          <input type="text" name="SLASerialNumber__c" id="SLASerialNumber__c" />
         </form>
       </div>
       <div class="modal-footer">
@@ -61,12 +64,14 @@
     $("#phoneChangerForm").submit(function (event) {
       var name = $("#name").val();
       var phone = $("#phone").val();
+      var SLASerialNumber__c = $('#SLASerialNumber__c').val();
       $.ajax({
         url: event.target.action,
         method: event.target.method,
         data: JSON.stringify({
           name: firstName,
           phone: lastName,
+          SLASerialNumber__c: SLASerialNumber__c
         }),
         success: function (data) {
           $("#exampleModal").modal().hide();

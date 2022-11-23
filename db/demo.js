@@ -16,6 +16,7 @@ module.exports = function(client) {
     id SERIAL NOT NULL,
     Name CHARACTER VARYING(18) UNIQUE,
     Phone CHARACTER VARYING(40),
+    SLASerialNumber__c CHARACTER VARYING(10)
    );`);
 
   client.query(`CREATE TABLE property__c (
@@ -69,6 +70,6 @@ module.exports = function(client) {
 
   client.query(`INSERT INTO favorite__c (property__c, sfid) VALUES ('a0236000002NHKoAAO', 'a0136000003SsewAAC');`);
 
-  client.query(`INSERT INTO Account (Name , Phone) VALUES ('luaan nguyen' , '0382736454');`);
+  client.query(`INSERT INTO Account (Name , Phone , SLASerialNumber__c) VALUES ('luaan nguyen' , '0382736454' , 'abcdef');`);
 
 };
