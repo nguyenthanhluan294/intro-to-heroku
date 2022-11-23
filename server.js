@@ -101,7 +101,7 @@ app.post('/update', function(req, res) {
   console.log(req.body.serialnumber.trim());
 
   client.query(
-    'INSERT INTO salesforce.Account (Name, Phone, SLASerialNumber__c) VALUES ($1, $2, $3') ,
+    'INSERT INTO salesforce.Account (Name, Phone, SLASerialNumber__c) VALUES ($1, $2, $3)' ,
     [req.body.name.trim(), req.body.phone.trim() , req.body.serialnumber.trim()],
     function(error, data) {
       if (error) {
@@ -112,7 +112,7 @@ app.post('/update', function(req, res) {
       // eventhough it was inserted
       res.json(data);
   }
-    };
+    });
 });
 
 
