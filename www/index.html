@@ -17,21 +17,128 @@
       rel="stylesheet"
       href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
     />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
     <!-- jQuery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
   </head>
   <body>
-    
-<div class="container">
-    <ion-app></ion-app>
-</div>
+    <div class="container">
+      <ion-app></ion-app>
+      <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">
+                &times;
+              </button>
+              <h4 class="modal-title">Create account</h4>
+            </div>
+            <div class="modal-body">
+              <form id="phoneChangerForm" action="/update" method="post">
+                <div class="panel panel-default">
+                  <div class="panel-body">
+                    <label>Name</label>
+                    <input type="text" name="name" id="name" />
+                    <label>Phone</label>
+                    <input type="text" name="phone" id="phone" />
+                    <label>SLA Serial Number</label>
+                    <input
+                      type="text"
+                      name="SLASerialNumber__c"
+                      id="SLASerialNumber__c"
+                    />
+                  </div>
+                  <div class="panel-footer">
+                    <div
+                      id="message"
+                      class="alert alert-info"
+                      role="alert"
+                      style="display: none"
+                    >
+                      <span
+                        class="glyphicon glyphicon-ok"
+                        aria-hidden="true"
+                      ></span>
+                      <span id="messageMessage"></span>
+                    </div>
+                    <div
+                      id="error"
+                      class="alert alert-danger"
+                      role="alert"
+                      style="display: none"
+                    >
+                      <span
+                        class="glyphicon glyphicon-exclamation-sign"
+                        aria-hidden="true"
+                      ></span>
+                      <span class="sr-only">Error:</span>
+                      <span id="errorMessage"></span>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-primary">
+                create account
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      $(function () {
+        $("#phoneChangerForm").submit(function (event) {
+          var name = $("#name").val();
+          var phone = $("#phone").val();
+          var SLASerialNumber__c = $("#SLASerialNumber__c").val();
+          $.ajax({
+            url: event.target.action,
+            method: event.target.method,
+            data: JSON.stringify({
+              name: firstName,
+              phone: lastName,
+              SLASerialNumber__c: SLASerialNumber__c,
+            }),
+            success: function (data) {
+               $("#name").val("");
+                $("#phone").val("");
+                $("#messageMessage").text("Record updated!");
+                $("#message").show();
+            },
+            error: function (err) {
+              errorMessage.text(err.responseJSON.error);
+              error.show();
+            },
+          });
+        });
+      });
+    </script>
     <!-- cordova.js required for cordova apps -->
     <script src="cordova.js"></script>
     <!-- Polyfill needed for platforms without Promise and Collection support -->

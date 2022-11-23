@@ -14,39 +14,4 @@
     </button>
   </ion-list>
 </ion-content>
-          <form id="phoneChangerForm" action="/update" method="post">
-            <label>Name</label>
-            <input type="text" name="name" id="name" />
-            <label>Phone</label>
-            <input type="text" name="phone" id="phone" />
-            <label>SLA Serial Number</label>
-            <input
-              type="text"
-              name="SLASerialNumber__c"
-              id="SLASerialNumber__c"
-            />
-            <button type="submit" class="btn btn-primary">
-                create account
-              </button>
-          </form>
-   <script>
-    $(function () {
-      $("#phoneChangerForm").submit(function (event) {
-        var name = $("#name").val();
-        var phone = $("#phone").val();
-        var SLASerialNumber__c = $("#SLASerialNumber__c").val();
-        $.ajax({
-          url: event.target.action,
-          method: event.target.method,
-          data: JSON.stringify({
-            name: firstName,
-            phone: lastName,
-            SLASerialNumber__c: SLASerialNumber__c,
-          }),
-          success: function (data) {
-            $("#exampleModal").modal().hide();
-          },
-        });
-      });
-    });
-  </script>
+  
