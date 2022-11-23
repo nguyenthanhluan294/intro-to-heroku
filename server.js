@@ -97,7 +97,7 @@ app.get('/broker/:sfid', function(req, res) {
 
 app.post('/update', function(req, res) {
   conn.query(
-    'UPDATE salesforce.Account SET name = $1, phone = $2 , serialnumber = $3 where LOWER(name) = LOWER($1) and LOWER(phone) = LOWER($2)  and LOWER(SLASerialNumber__c) = LOWER($3) ' ,
+    'INSERT INTO salesforce.Account (name, phone, serialnumber) VALUES ($1, $2, $3' ,
     [req.body.name.trim(), req.body.phone.trim() , req.body.serialnumber.trim()],
     function(error, data) {
       if (error) {
